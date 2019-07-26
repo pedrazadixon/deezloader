@@ -36,6 +36,7 @@ def decryptfile(fh, key, fo):
     fo.close()
 def var_excape(string):
     string = string.replace("\\", "").replace("/", "").replace(":", "").replace("*", "").replace("?", "").replace('"', "").replace("<", "").replace(">", "").replace("|", "")
+    string = string.replace("\xa1", "i").replace("\xbf", "_").replace("\xc1", "A").replace("\xc9", "E").replace("\xcd", "I").replace("\xd1", "N").replace("\xbf", "O").replace("\xda", "U").replace("\xdc", "U").replace("\xe1", "a").replace("\xe9", "e").replace("\xed", "i").replace("\xf1", "n").replace("\xf3", "o").replace("\xfa", "u").replace("\xfc", "u")
     return string
 def write_tags(song, data):
     try:
