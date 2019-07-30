@@ -35,8 +35,23 @@ def decryptfile(fh, key, fo):
         seg += 1
     fo.close()
 def var_excape(string):
-    string = string.replace("\\", "").replace("/", "").replace(":", "").replace("*", "").replace("?", "").replace('"', "").replace("<", "").replace(">", "").replace("|", "")
-    string = string.replace("\xa1", "i").replace("\xbf", "_").replace("\xc1", "A").replace("\xc9", "E").replace("\xcd", "I").replace("\xd1", "N").replace("\xbf", "O").replace("\xda", "U").replace("\xdc", "U").replace("\xe1", "a").replace("\xe9", "e").replace("\xed", "i").replace("\xf1", "n").replace("\xf3", "o").replace("\xfa", "u").replace("\xfc", "u")
+    mapping = [
+        ("\\", ""), ("/", ""), (":", ""), ("*", ""), ("?", ""), ('"', ""),
+        ("<", ""), (">", ""), ("|", ""), ("\xC0", "A"), ("\xC1", "A"), ("\xC2", "A"), 
+        ("\xC3", "A"), ("\xC4", "A"), ("\xC5", "A"), ("\xC6", "_"), ("\xC7", "C"), ("\xC8", "E"),
+        ("\xC9", "E"), ("\xCA", "E"), ("\xCB", "E"), ("\xCC", "I"), ("\xCD", "I"), ("\xCE", "I"), 
+        ("\xCF", "I"), ("\xD0", "D"), ("\xD1", "N"), ("\xD2", "O"), ("\xD3", "O"), ("\xD4", "O"), 
+        ("\xD5", "O"), ("\xD6", "O"), ("\xD8", "O"), ("\xD9", "U"), ("\xDA", "U"), ("\xDB", "U"), 
+        ("\xDC", "U"), ("\xDD", "Y"), ("\xDE", "_"), ("\xDF", "_"), ("\xE0", "a"), ("\xE1", "a"), 
+        ("\xE2", "a"), ("\xE3", "a"), ("\xE4", "a"), ("\xE5", "a"), ("\xE6", "_"), ("\xE7", "c"), 
+        ("\xE8", "e"), ("\xE9", "e"), ("\xEA", "e"), ("\xEB", "e"), ("\xEC", "i"), ("\xED", "i"), 
+        ("\xEE", "i"), ("\xEF", "i"), ("\xF0", "_"), ("\xF1", "n"), ("\xF2", "o"), ("\xF3", "o"), 
+        ("\xF4", "o"), ("\xF5", "o"), ("\xF6", "o"), ("\xF8", "o"), ("\xF9", "u"), ("\xFA", "u"), 
+        ("\xFB", "u"), ("\xFC", "u"), ("\xFD", "y"), ("\xFE", "_"), ("\xFF", "y"), ("\u0152", "_"), 
+        ("\u0153", "_"), ("\u0160", "S"), ("\u0161", "s"), ("\u0178", "Y"), ("\u0192", "f")
+    ]
+    for k, v in mapping:
+        string = string.replace(k, v)
     return string
 def write_tags(song, data):
     try:

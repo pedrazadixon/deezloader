@@ -202,6 +202,7 @@ class Login:
             image = request("https://e-cdns-images.dzcdn.net/images/cover/1200x1200-000000-80-0-0.jpg").content
            datas['image'] = image
            song = datas['music'] + " - " + datas['artist']
+           song = var_excape(song)
            print("\nDownloading:" + song)
            try:
               nams = ultimatum(infos, name, datas, quality, recursive_download, recursive_quality)
